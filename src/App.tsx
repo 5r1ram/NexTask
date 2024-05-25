@@ -141,6 +141,6 @@ authProvider={authProvider}
         </RefineKbarProvider>
         </BrowserRouter>
       );
-};
+}
 
 export default App;
