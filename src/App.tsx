@@ -24,12 +24,6 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { ForgotPassword } from "./pages/forgotPassword";
 
-const API_URL = "https://api.nestjs-query.refine.dev/graphql";
-const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
-
-const gqlClient = new GraphQLClient(API_URL);
-const wsClient = createClient({ url: WS_URL });
-
 function App() {
     return (
         <BrowserRouter>
@@ -37,11 +31,12 @@ function App() {
         <RefineKbarProvider>
 <AntdApp>
             <DevtoolsProvider>
-                <Refine dataProvider={dataProvider(gqlClient)}
-liveProvider={liveProvider(wsClient)}
-notificationProvider={useNotificationProvider}
-routerProvider={routerBindings}
-// authProvider={} 
+                <Refine 
+                // dataProvider={dataProvider(gqlClient)}
+                // liveProvider={liveProvider(wsClient)}
+                notificationProvider={useNotificationProvider}
+                routerProvider={routerBindings}
+                // authProvider={} 
                         resources={[
                             {
                                 name: "blog_posts",
