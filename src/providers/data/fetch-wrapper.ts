@@ -1,4 +1,4 @@
-import { GraphQLFormattedError } from "graphql";
+import type { GraphQLFormattedError } from "graphql";
 
 type Error = {
     message: string;
@@ -16,17 +16,17 @@ const customFetch = async(url: string, options: RequestInit) => {
             ...headers,
             Authorization: headers?.Authorization || `Bearer ${accessToken}`,
             "Content-Type": "application/json",
-            "Apollo-Require-Preflight": "true"
+            "Apollo-Require-Preflight": "true",
         }
     })
 }
 
-const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undefined>) : Error | null => {
+const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undefined>,) : Error | null => {
     if(!body) {
         return {
             message: "Unknown error",
             statusCode: "INTERNAL_SERVER_ERROR"
-        }
+        };
     }
 
     if("errors" in body) {
@@ -38,7 +38,7 @@ const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undef
         return {
             message: messages || JSON.stringify(errors),
             statusCode: code || 500
-        }
+        };
     }
 
     return null;
