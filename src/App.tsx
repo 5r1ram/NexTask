@@ -14,6 +14,7 @@ import { AuthPage,ErrorComponent
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider, { GraphQLClient, liveProvider } from "@refinedev/nestjs-query";
+import { createClient } from "graphql-ws";
 import { App as AntdApp } from "antd"
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import routerBindings, { NavigateToResource, CatchAllNavigate, UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
@@ -30,12 +31,11 @@ function App() {
         <RefineKbarProvider>
         <AntdApp>
             <DevtoolsProvider>
-                <Refine 
-                // dataProvider={dataProvider(gqlClient)}
-                // liveProvider={liveProvider(wsClient)}
-                notificationProvider={useNotificationProvider}
-                routerProvider={routerBindings}
-                // authProvider={} 
+                <Refine dataProvider={dataProvider(gqlClient)}
+liveProvider={liveProvider(wsClient)}
+notificationProvider={useNotificationProvider}
+routerProvider={routerBindings}
+// authProvider={} 
                         resources={[
                             {
                                 name: "blog_posts",
@@ -111,7 +111,6 @@ function App() {
                                     <Route path="/forgot-password" element={<ForgotPassword />} />
                         </Route>
                     </Routes>
-
 
                     <RefineKbar />
                     <UnsavedChangesNotifier />
