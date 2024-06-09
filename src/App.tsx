@@ -14,7 +14,6 @@ import { AuthPage,ErrorComponent
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider, { GraphQLClient, liveProvider } from "@refinedev/nestjs-query";
-import { createClient } from "graphql-ws";
 import { App as AntdApp } from "antd"
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import routerBindings, { NavigateToResource, CatchAllNavigate, UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
@@ -24,24 +23,19 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { ForgotPassword } from "./pages/forgotPassword";
 
-const API_URL = "https://api.nestjs-query.refine.dev/graphql";
-const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
-
-const gqlClient = new GraphQLClient(API_URL);
-const wsClient = createClient({ url: WS_URL });
-
 function App() {
     return (
         <BrowserRouter>
         <GitHubBanner />
         <RefineKbarProvider>
-<AntdApp>
+        <AntdApp>
             <DevtoolsProvider>
-                <Refine dataProvider={dataProvider(gqlClient)}
-liveProvider={liveProvider(wsClient)}
-notificationProvider={useNotificationProvider}
-routerProvider={routerBindings}
-// authProvider={} 
+                <Refine 
+                // dataProvider={dataProvider(gqlClient)}
+                // liveProvider={liveProvider(wsClient)}
+                notificationProvider={useNotificationProvider}
+                routerProvider={routerBindings}
+                // authProvider={} 
                         resources={[
                             {
                                 name: "blog_posts",
