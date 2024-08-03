@@ -13,7 +13,7 @@ import { AuthPage,ErrorComponent
 ,ThemedSiderV2} from '@refinedev/antd';
 import "@refinedev/antd/dist/reset.css";
 
-import { dataProvider, liveProvider } from './providers';
+import { authProvider, dataProvider, liveProvider } from './providers';
 import { App as AntdApp } from "antd"
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import routerBindings, { NavigateToResource, CatchAllNavigate, UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
@@ -35,7 +35,7 @@ function App() {
                 liveProvider={liveProvider}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
-                // authProvider={}
+                authProvider={authProvider}
                         resources={[
                             {
                                 name: "blog_posts",
@@ -66,7 +66,7 @@ function App() {
                         liveMode: "auto",
                     }}
                 >
-                    <Routes>
+                    {/* <Routes>
                         <Route
                             element={
                                 <Authenticated
@@ -110,6 +110,10 @@ function App() {
                                     <Route path="/register" element={<Register />} />
                                     <Route path="/forgot-password" element={<ForgotPassword />} />
                         </Route>
+                    </Routes> */}
+
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
                     </Routes>
 
                     <RefineKbar />

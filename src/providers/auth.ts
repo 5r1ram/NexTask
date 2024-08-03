@@ -1,6 +1,6 @@
 import type { AuthProvider } from "@refinedev/core";
 
-import type { User } from "@/graphql/schema.types";
+// import type { User } from "@/graphql/schema.types";
 
 import { API_URL, dataProvider } from "./data";
 
@@ -63,6 +63,7 @@ export const authProvider: AuthProvider = {
     if (error.statusCode === "UNAUTHENTICATED") {
       return {
         logout: true,
+        ...error,
       };
     }
 
@@ -100,7 +101,7 @@ export const authProvider: AuthProvider = {
     const accessToken = localStorage.getItem("access_token");
 
     try {
-      const { data } = await dataProvider.custom<{ me: User }>({
+      const { data } = await dataProvider.custom<{ me: any }>({
         url: API_URL,
         method: "post",
         headers: accessToken
