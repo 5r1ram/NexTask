@@ -21,6 +21,7 @@ import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import routerBindings, { NavigateToResource, CatchAllNavigate, UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
 import { BlogPostList, BlogPostCreate, BlogPostEdit, BlogPostShow } from "./pages/blog-posts";
 import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
+import Layout from './components/layout';
 
 function App() {
     return (
@@ -65,58 +66,23 @@ function App() {
                         liveMode: "auto",
                     }}
                 >
-                    {/* <Routes>
-                        <Route
-                            element={
-                                <Authenticated
-                                    key="authenticated-inner"
-                                    fallback={<CatchAllNavigate to="/login" />}
-                                >
-                                        <ThemedLayoutV2
-                                            // Header={() => <Header sticky />}
-                                            Sider={(props) => <ThemedSiderV2 {...props} fixed />}
-                                        >
-                                            <Outlet />
-                                        </ThemedLayoutV2>
-                                </Authenticated>
-                            }
-                        >
-                            <Route index element={
-                                    <NavigateToResource resource="blog_posts" />
-                            } />
-                            <Route path="/blog-posts">
-                                <Route index element={<BlogPostList />} />
-                                <Route path="create" element={<BlogPostCreate />} />
-                                <Route path="edit/:id" element={<BlogPostEdit />} />
-                                <Route path="show/:id" element={<BlogPostShow />} />
-                            </Route>
-                            <Route path="/categories">
-                                <Route index element={<CategoryList />} />
-                                <Route path="create" element={<CategoryCreate />} />
-                                <Route path="edit/:id" element={<CategoryEdit />} />
-                                <Route path="show/:id" element={<CategoryShow />} />
-                            </Route>
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                        <Route
-                            element={
-                                <Authenticated key="authenticated-outer" fallback={<Outlet />}>
-                                    <NavigateToResource />
-                                </Authenticated>
-                            }
-                        >
-                                <Route path="/login" element={<Login />}  />
-                                    <Route path="/register" element={<Register />} />
-                                    <Route path="/forgot-password" element={<ForgotPassword />} />
-                        </Route>
-                    </Routes> */}
-
                     <Routes>
-                        <Route index element={<WelcomePage />} />
-                        <Route index element={<Home />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/login' element={<Login />} /> 
                         <Route path='/forgot-password' element={<ForgotPassword />} />
+                        <Route 
+                            element={
+                            <Authenticated
+                                key="authenticated-layout"
+                                fallback={<CatchAllNavigate to='/login' />}
+                            >
+                                <Layout>
+                                    <Outlet />
+                                </Layout>
+                            </Authenticated>
+                        }>
+                            <Route index element={<Home />} />
+                        </Route>
                     </Routes>
 
                     <RefineKbar />
