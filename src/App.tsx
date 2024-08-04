@@ -13,16 +13,14 @@ import { AuthPage,ErrorComponent
 ,ThemedSiderV2} from '@refinedev/antd';
 import "@refinedev/antd/dist/reset.css";
 
-import dataProvider, { GraphQLClient, liveProvider } from "@refinedev/nestjs-query";
-import { createClient } from "graphql-ws";
+import { authProvider, dataProvider, liveProvider } from './providers';
+import { Home, ForgotPassword, Login, Register } from "./pages";
+
 import { App as AntdApp } from "antd"
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import routerBindings, { NavigateToResource, CatchAllNavigate, UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
 import { BlogPostList, BlogPostCreate, BlogPostEdit, BlogPostShow } from "./pages/blog-posts";
 import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
-import { ForgotPassword } from "./pages/forgotPassword";
 
 function App() {
     return (
@@ -31,11 +29,12 @@ function App() {
         <RefineKbarProvider>
         <AntdApp>
             <DevtoolsProvider>
-                <Refine dataProvider={dataProvider(gqlClient)}
-liveProvider={liveProvider(wsClient)}
-notificationProvider={useNotificationProvider}
-routerProvider={routerBindings}
-// authProvider={} 
+                <Refine 
+                dataProvider={dataProvider}
+                liveProvider={liveProvider}
+                notificationProvider={useNotificationProvider}
+                routerProvider={routerBindings}
+                authProvider={authProvider}
                         resources={[
                             {
                                 name: "blog_posts",
@@ -66,7 +65,7 @@ routerProvider={routerBindings}
                         liveMode: "auto",
                     }}
                 >
-                    <Routes>
+                    {/* <Routes>
                         <Route
                             element={
                                 <Authenticated
@@ -110,6 +109,14 @@ routerProvider={routerBindings}
                                     <Route path="/register" element={<Register />} />
                                     <Route path="/forgot-password" element={<ForgotPassword />} />
                         </Route>
+                    </Routes> */}
+
+                    <Routes>
+                        <Route index element={<WelcomePage />} />
+                        <Route index element={<Home />} />
+                        <Route path='/register' element={<Register />} />
+                        <Route path='/login' element={<Login />} /> 
+                        <Route path='/forgot-password' element={<ForgotPassword />} />
                     </Routes>
 
                     <RefineKbar />
