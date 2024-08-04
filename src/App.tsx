@@ -14,14 +14,13 @@ import { AuthPage,ErrorComponent
 import "@refinedev/antd/dist/reset.css";
 
 import { authProvider, dataProvider, liveProvider } from './providers';
+import { Home, ForgotPassword, Login, Register } from "./pages";
+
 import { App as AntdApp } from "antd"
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import routerBindings, { NavigateToResource, CatchAllNavigate, UnsavedChangesNotifier, DocumentTitleHandler } from "@refinedev/react-router-v6";
 import { BlogPostList, BlogPostCreate, BlogPostEdit, BlogPostShow } from "./pages/blog-posts";
 import { CategoryList, CategoryCreate, CategoryEdit, CategoryShow } from "./pages/categories";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
-import { ForgotPassword } from "./pages/forgotPassword";
 
 function App() {
     return (
@@ -114,6 +113,10 @@ function App() {
 
                     <Routes>
                         <Route index element={<WelcomePage />} />
+                        <Route index element={<Home />} />
+                        <Route path='/register' element={<Register />} />
+                        <Route path='/login' element={<Login />} /> 
+                        <Route path='/forgot-password' element={<ForgotPassword />} />
                     </Routes>
 
                     <RefineKbar />
