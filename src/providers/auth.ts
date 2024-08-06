@@ -127,6 +127,7 @@ export const authProvider: AuthProvider = {
       });
 
       return data.me;
+      
     } catch (error) {
       return undefined;
     }
