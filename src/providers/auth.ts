@@ -9,7 +9,7 @@ import { API_URL, dataProvider } from "./data";
  */
 export const authCredentials = {
   email: "michael.scott@dundermifflin.com",
-  password: "demodemo",
+  password: "demodemo"
 };
 
 export const authProvider: AuthProvider = {
