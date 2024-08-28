@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
+    "@ant-design/plots": "^1.2.5",
     "@fluentui/react-icons": "^2.0.252",
     "@refinedev/antd": "^5.40.0",
     "@refinedev/cli": "^2.16.33",
