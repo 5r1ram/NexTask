@@ -25,7 +25,7 @@ const DealsChart = () => {
     }
   })
 
-  console.log(data)
+  // console.log(data)
 
   const dealData = React.useMemo(() => {
     return mapDealsData(data?.data)
