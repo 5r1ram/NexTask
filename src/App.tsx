@@ -14,7 +14,7 @@ import { AuthPage,ErrorComponent
 import "@refinedev/antd/dist/reset.css";
 
 import { authProvider, dataProvider, liveProvider } from './providers';
-import { Home, ForgotPassword, Login, Register } from "./pages";
+import { Home, ForgotPassword, Login, Register, CompanyList } from "./pages";
 
 import { App as AntdApp } from "antd"
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
@@ -62,6 +62,7 @@ function App() {
                             </Authenticated>
                         }>
                             <Route index element={<Home />} />
+                            <Route path="/companies" element={<CompanyList />} />
                         </Route>
                     </Routes>
 
